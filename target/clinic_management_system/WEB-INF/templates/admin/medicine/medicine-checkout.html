@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="stylesheet"
+	th:href="@{/static/css/dispense-medicine-checkout.css}" />
+<link rel="stylesheet" th:href="@{/static/css/admin-shared.css}" />
+</head>
+<body>
+	<div class="container">
+		<aside th:insert="fragments/sideMenu.html :: sideMenu"></aside>
+		<main class="sub-container">
+			<div class="form-group">
+				<h1>Order Info</h1>
+				<form th:object="${orderForm}" method="POST"
+					th:action="@{/orders/patient/{patientId}/appointment/{appointmentId}(patientId=${patientId},appointmentId=${appointmentId})}">
+					<table>
+						<tr>
+							<th>No</th>
+							<th>Name</th>
+							<th>Description</th>
+							<th>Price</th>
+							<th>Quantity</th>
+						</tr>
+						<th:block th:if="${orderForm.orderDetails == null}">
+							<tr>
+								<td colspan="5">No order</td>
+							</tr>
+						</th:block>
+						<th:block th:if="${orderForm.orderDetails != null}">
+							<tr th:each="orderDetail,itr : ${orderForm.orderDetails}">
+								<td><label th:text="${itr.count}" class="no"></label> <input
+									type="hidden"
+									th:field="*{orderDetails[__${itr.index}__].medicine.id}" /></td>
+								<td><label th:text="${orderDetail.medicine.name}"></label>
+									<input type="hidden"
+									th:field="*{orderDetails[__${itr.index}__].name}" /></td>
+								<td><label th:text="${orderDetail.medicine.description}"></label>
+									<input type="hidden"
+									th:field="*{orderDetails[__${itr.index}__].description}" /></td>
+								<td><label th:text="|RM${orderDetail.medicine.price}|"
+									class="price"></label> <input type="hidden"
+									th:field="*{orderDetails[__${itr.index}__].subtotal}" /></td>
+								<td><input type="number" required
+									th:field="*{orderDetails[__${itr.index}__].quantity}" />
+									<div
+										th:if="${#fields.hasErrors('orderDetails[__${itr.index}__].quantity')}"
+										th:errors="*{orderDetails[__${itr.index}__].quantity}"
+										class="error"></div></td>
+							</tr>
+						</th:block>
+
+						<tr th:if="${orderForm.orderDetails == null}">
+							<td colspan="5">
+								<div>No medicine selected</div>
+							</td>
+						</tr>
+						</th:block>
+					</table>
+					<h1>Appointment Details</h1>
+					<table>
+						<tr>
+							<th>No</th>
+							<th>Patient Name</th>
+							<th>Patient ID</th>
+							<th>Appointment Date From</th>
+							<th>Appointment Date To</th>
+							<th>Doctor</th>
+							<th>Consultation Fees</th>
+						</tr>
+						<tr th:each="appointment,itr : ${appointmentDetails}">
+							<td th:text="${itr.count}"></td>
+							<td th:text="${appointment.patient.name}"></td>
+							<td th:text="${appointment.patient.SSN}"></td>
+							<td th:text="${appointment.appointmentStartDateTime}"></td>
+							<td th:text="${appointment.appointmentEndDateTime}"></td>
+							<td th:text="${appointment.doctor.id}" style="width: 100px;"></td>
+							<td><input type="number" th:field="*{consultationFees}" />
+								<div th:if="${#fields.hasErrors('consultationFees')}"
+									th:errors="*{consultationFees}" class="error"></div></td>
+						</tr>
+					</table>
+					<br /> <br /> <input type="submit" value="Issue Medicine" />
+				</form>
+			</div>
+		</main>
+	</div>
+</body>
+
+</html>

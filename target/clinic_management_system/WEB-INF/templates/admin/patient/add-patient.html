@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="stylesheet"
+	th:href="@{/static/css/admin/patient/add-patient.css}" />
+<link rel="stylesheet" th:href="@{/static/css/admin-shared.css}" />
+<style>
+
+</style>
+</head>
+<body>
+	<div class="container">
+		<aside th:insert="fragments/sideMenu.html :: sideMenu"></aside>
+		<div class="sub-container">
+			<div class="back-btn">
+				<a th:href="@{/patients/manage-patient/index}">Back</a>
+			</div>
+			<div class="content-container">
+				<form th:action="@{/patients}" method="POST" id="add-patient-form"
+					th:object="${patient}">
+					<table>
+						<tr>
+							<th colspan="2"><h1>Add Patient</h1></th>
+						</tr>
+						<tr>
+							<td><label>Applicant :</label></td>
+							<td><select required id="applicant-select">
+									<option>Select an applicant</option>
+									<option th:each="applicant : ${applicantList}"
+										th:value="${applicant.id}"
+										th:text="|${applicant.name}  ${applicant.SSN}|"></option>
+							</select></td>
+						</tr>
+						<tr>
+							<td><label>Name:</label></td>
+							<td><input type="text" required id="applicant-name"
+								th:field="*{name}" /></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+							</td>
+						</tr>
+						<tr>
+							<td><label>Date of Birth</label></td>
+							<td><input type="date" required id="applicant-dob"
+								name="dateOfBirth" th:field="*{dateOfBirth}" /></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<div th:if="${#fields.hasErrors('dateOfBirth')}"
+									th:errors="*{dateOfBirth}"></div>
+							</td>
+						</tr>
+						<tr>
+							<td><label>SSN</label></td>
+							<td><input type="text" required id="applicant-ssn"
+								th:field="*{SSN}" /></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<div th:if="${#fields.hasErrors('SSN')}" th:errors="*{SSN}"></div>
+							</td>
+						</tr>
+						<tr>
+							<td><label>Gender</label></td>
+							<td>Female<input type="radio" value="M" name="gender"
+								th:field="*{gender}" /> Male<input type="radio" value="F"
+								name="gender" th:field="*{gender}" />
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<div th:if="${#fields.hasErrors('gender')}"
+									th:errors="*{gender}"></div>
+							</td>
+						</tr>
+						<tr>
+							<td><label>Contact</label></td>
+							<td><input type="text" required id="applicant-contact"
+								th:field="*{contact}" /></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<div th:if="${#fields.hasErrors('contact')}"
+									th:errors="*{contact}"></div>
+							</td>
+						</tr>
+						<tr>
+							<td><label>Email Address</label></td>
+							<td><input type="email" required id="applicant-email"
+								th:field="*{emailAddress}" /></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<div th:if="${#fields.hasErrors('emailAddress')}"
+									th:errors="*{emailAddress}"></div>
+							</td>
+						</tr>
+						<tr>
+							<td><label>Address Line 1</label></td>
+							<td><input type="text" required id="applicant-address-1"
+								th:field="*{address_line_1}" /></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<div th:if="${#fields.hasErrors('address_line_1')}"
+									th:errors="*{address_line_1}"></div>
+							</td>
+						</tr>
+						<tr>
+							<td><label>Address Line 2</label></td>
+							<td><input type="text" required id="applicant-address-2"
+								th:field="*{address_line_2}" /></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<div th:if="${#fields.hasErrors('address_line_2')}"
+									th:errors="*{address_line_2}"></div>
+							</td>
+						</tr>
+						<tr>
+							<td><label>Postcode</label></td>
+							<td><input type="text" required id="applicant-postcode"
+								th:field="*{postcode}" /></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<div th:if="${#fields.hasErrors('postcode')}"
+									th:errors="*{postcode}"></div>
+							</td>
+						</tr>
+						<tr>
+							<td><label>City</label></td>
+							<td><input type="text" required id="applicant-city"
+								th:field="*{city}" /></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<div th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></div>
+							</td>
+						</tr>
+						<tr>
+							<td><label>State</label></td>
+							<td><input type="text" required id="applicant-state"
+								th:field="*{state}" /></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<div th:if="${#fields.hasErrors('state')}" th:errors="*{state}"></div>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><input type="submit" value="Add New Patient" /></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script>
+				let applicantList = /*[[${applicantList}]]*/ '';
+				const applicantDropDown = document.getElementById("applicant-select");
+				const applicantNameInput = document.getElementById("applicant-name");
+				const applicantDOBInput = document.getElementById("applicant-dob");
+				const applicantSSNInput = document.getElementById("applicant-ssn");
+				const applicantContactInput = document.getElementById("applicant-contact");
+				const applicantEmailInput = document.getElementById("applicant-email");
+				const applicantAddress1Input = document.getElementById("applicant-address-1");
+				const applicantAddress2Input = document.getElementById("applicant-address-2");
+				const applicantPostcodeInput = document.getElementById("applicant-postcode");
+				const applicantCityInput = document.getElementById("applicant-city");
+				const applicantStateInput = document.getElementById("applicant-state");
+				
+				const d = new Date();
+				
+				const addPatientForm = document.getElementById("add-patient-form");
+				
+				applicantDOBInput.max = d.getFullYear() +"-"+"0"+(d.getMonth()+1)+"-"+d.getDate();
+
+				applicantDropDown.addEventListener("change",()=>{
+					if(applicantList.length > 0){
+						for(let n = 0; n < applicantList.length; n++){
+							if(applicantList[n].id == applicantDropDown.value){
+								applicantNameInput.value = applicantList[n].name;
+								applicantSSNInput.value = applicantList[n].ssn;
+								applicantContactInput.value = applicantList[n].contact;
+								applicantEmailInput.value = applicantList[n].emailAddress;
+								addPatientForm.action = "/patient/"+applicantList[n].id+"/add";
+								console.log(addPatientForm.action);
+							}
+						}
+					}
+				});
+				</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"  rel="stylesheet" type="text/css" />
+<link rel="stylesheet" th:href="@{/static/css/view-bill.css}" />
+<link rel="stylesheet" th:href="@{/static/css/shared.css}" />
+</head>
+
+<body>
+	<div id="container">
+		<header th:insert="fragments/nav.html :: header"> </header>
+		<main>
+			<h1>Bill List</h1>
+			<div class="bill-table">
+				<div class="bill-panel" th:each="order,itr : ${orders}">
+					<table>
+						<tr>
+							<th>No</th>
+							<th>Appointment From</th>
+							<th>Appointment Until</th>
+							<th>Doctor</th>
+							<th>Status</th>
+						</tr>
+						<tr>
+							<td th:text="${itr.count}"></td>
+							<td th:text="${order.appointment.appointmentStartDateTime}"></td>
+							<td th:text="${order.appointment.appointmentEndDateTime}"></td>
+							<td th:text="'Dr. '+${order.appointment.doctor.name}"></td>
+							<th:block th:if="${order.status == false}">
+								<td>
+									<a th:href="@{/orders/{orderId}/checkout(orderId=${order.id})}">Pay now</a>
+								</td>
+							</th:block>
+							<th:block th:if="${order.status == true}">
+								<td>Paid</td>
+							</th:block>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</main>
+		<footer>
+			<div class="left-footer">
+				<h3>Quick Links</h3>
+				<a th:href="@{/}">Home</a> <a th:href="@{/service}">Our Service</a> <a th:href="@{/about}">About Us</a> <a th:href="@{/job}">Job Opportunities</a>
+			</div>
+			<div class="right-footer">
+				<h1>CSPJ</h1>
+				<i class="fa-solid fa-envelope"></i>
+				<p>cspj@gmail.com</p>
+				<i class="fa-solid fa-phone"></i>
+				<p>+6011-11111111</p>
+				<i class="fa-solid fa-location-pin"></i>
+				<p>Taman Sri</p>
+				<p>43200, Cheras Selangor</p>
+			</div>
+		</footer>
+	</div>
+	<script src="js/dropDown.js"></script>
+</body>
+
+</html>

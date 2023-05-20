@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/static/css/admin/appointment/manage-appointment.css}" />
+<link rel="stylesheet" th:href="@{/static/css/admin-shared.css}" />
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+	rel="stylesheet" type="text/css" />
+<style>
+.error {
+	color: red;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<aside th:insert="fragments/sideMenu.html :: sideMenu"></aside>
+		<main>
+			<h1>Appointment</h1>
+			<div class="top">
+				<a id="create-appointment-btn" th:href="@{/appointments/add-appointment/index}"> <i
+					class="fa-solid fa-plus"></i> Create New Appointment
+				</a>
+			</div>
+			<br />
+			<table class="appointment-table" id="appointment-table">
+				<tr>
+					<th>No</th>
+					<th>Appointment Start Date Time</th>
+					<th>Appointment End Date Time</th>
+					<th>Doctor</th>
+					<th>Patient Details</th>
+					<th colspan="2">Action</th>
+				</tr>
+				<tr th:each="appointment,itr : ${appointmentList}">
+					<td th:text="${itr.count}"></td>
+					<td th:text="${appointment.appointmentStartDateTime}"></td>
+					<td th:text="${appointment.appointmentEndDateTime}"></td>
+					<td
+						th:text="|${appointment.doctor.name}-${appointment.doctor.specialization}|"></td>
+					<td>
+						<form method="GET"
+							th:action="@{/appointments/{appointmentId}/patients/{patientId}/details(appointmentId=${appointment.id},
+					patientId=${appointment.patient.id})}">
+							<button class="btn" type="submit">View</button>
+						</form>
+					</td>
+					<td>
+						<form th:method="PUT"
+							th:action="@{/appointments/{appointmentId}/status/true(appointmentId=${appointment.id})}">
+							<button class="btn" type="submit">Mark as done</button>
+						</form>
+					</td>
+					<td>
+						<form th:method="DELETE"
+							th:action="@{/appointments/{appointmentId}(appointmentId=${appointment.id})}">
+							<button class="btn" type="submit">Delete</button>
+						</form>
+					</td>
+				</tr>
+			</table>
+		</main>
+	</div>
+	<script>
+		function deleteAppointment(e, form) {
+			e.preventDefault();
+
+			let confirmDelete = confirm("Are you sure to delete this appointment");
+
+			if (confirmDelete) {
+				form.submit();
+			}
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+main {
+  padding: 150px;
+}
+
+.bill-table {
+  height: 500px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 1px 1px rgb(243, 243, 243);
+  border: 1px solid gray;
+  padding: 30px;
+  overflow-y: scroll;
+}
+
+.bill-panel {
+  height: 200px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 1px 1px rgb(209, 207, 207);
+  border: 1px solid gray;
+  margin-top:30px;
+}
+
+.bill-panel table tr th:nth-child(1) {
+  width: 300px;
+}
+.bill-panel table tr th:nth-child(2),
+.bill-panel table tr th:nth-child(3),
+.bill-panel table tr th:nth-child(4) {
+  width: 300px;
+}
+
+.bill-panel table tr {
+  height: 80px;
+}
+.bill-panel table tr td {
+  text-align: center;
+}

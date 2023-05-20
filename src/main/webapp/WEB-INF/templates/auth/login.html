@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+	rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/static/css/shared.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/static/css/auth/login.css}" />
+
+</head>
+<body>
+	<div class="container">
+		<div class="form_container">
+			<table class="login-form">
+				<form method="post" th:object="${user}" th:action="@{/login}">
+				<tr>
+					<td colspan="3">
+						<h2>Login to your account</h2>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">Enter your details to login.</td>
+				</tr>
+				<tr>
+					<td colspan="3"><label for="username" class="label"> Username / Email Address</label></td>
+				</tr>
+				<tr>
+					<td colspan="3"><input type="text" name="username"
+						th:field="*{username}"
+						placeholder="Enter your username" /></td>
+				</tr>
+				<tr>
+					<td><label for="password" class="label">Password</label></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td colspan="3"><input type="password" name="password"
+						th:field="*{password}"
+						placeholder="Enter your password"></td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" /> Remember me</td>
+					<td></td>
+					<td style="text-align: right;"><a th:href="@{/auth/forgot-password/index}">Forgot Password?</a></td>
+				</tr>
+				<tr>
+					<td><input type="submit" value="Login" /></td>
+					<td><input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" /></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th:block th:if="${param.error != null}">
+						<td
+							style="width: 100%; padding: 30px 20px; border-radius: 5px; background-color: #FF9494;"
+							colspan="3">
+							<ul>
+								<li th:text="'Invalid credentials'" class="error"></li>
+							</ul>
+						</td>
+					</th:block>
+				</tr>
+				</form>
+				<tr>
+					<td colspan="3">By clicking login, you agree to our <a href="">Term
+							and Conditions</a></td>
+				</tr>
+				<tr>
+					<td colspan="3">Don't have an account? <a href="">Register
+							Now</a></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td style="text-align: center;">OR</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>
+						<button style="width: 40px; height: 40px;">
+							<i class="fa-brands fa-facebook" style="font-size: 30px;"></i>
+						</button>
+					</td>
+					<td>
+						<button style="width: 40px; height: 40px;">
+							<i class="fa-brands fa-square-twitter" style="font-size: 30px;"></i>
+						</button>
+					</td>
+					<td>
+						<form>
+							<button style="width: 40px; height: 40px;">
+								<i class="fa-brands fa-google" style="font-size: 30px;"></i>
+							</button>
+						</form>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div
+			style="display: flex; justify-content: center; align-items: center; background-color: #abdbe3;">
+			<img th:src="@{/static/img/login_bg.png}" width="300" height="300" />
+		</div>
+	</div>
+</body>
+</html>

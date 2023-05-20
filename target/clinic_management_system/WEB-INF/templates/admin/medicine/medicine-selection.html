@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/static/css/admin-shared.css}" />
+<style>
+.form-component-container {
+	height: 600px;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+	padding: 20px 30px;
+	overflow-y: scroll;
+	width: 100%;
+}
+
+#form {
+	padding-right: 200px;
+}
+
+table {
+	width: 100%;
+}
+
+table tr td:nth-child(1) {
+	width: 60px;
+	height: 50px;
+}
+
+table tr th {
+	height: 60px;
+}
+
+table tr td:nth-child(2) {
+	width: 300px;
+}
+
+table tr td:nth-child(3) {
+	width: 500px;
+}
+
+table tr td:nth-child(4) {
+	width: 200px;
+}
+
+table tr td {
+	text-align: center;
+}
+
+.content-layout {
+	width: 100%;
+	padding: 40px 40px;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<aside th:insert="fragments/sideMenu.html :: sideMenu"></aside>
+		<div class="content-layout">
+			<main class="sub-container">
+				<h1>Medicines Selection</h1>
+				<form id="form" method="POST" th:object="${medicineForm}"
+					th:action="@{/medicines/patient/{patientId}/appointment/{appointmentId}/checkout
+		(patientId=${patientId},appointmentId=${appointmentId})}">
+					<div class="form-component-container">
+						<table>
+							<tr>
+								<th>No</th>
+								<th>Name</th>
+								<th>Description</th>
+								<th>Price</th>
+							</tr>
+							<tr th:each="medicine,itr : ${medicines}">
+								<td><label th:text="${itr.count}" class="no"></label> <input
+									type="hidden" th:value="${medicine.id}"
+									th:field="*{medicineList[__${itr.index}__].id}" /></td>
+								<td>
+									<!--label th:text="${medicine.name}" class="name"></label--> <input
+									type="hidden" th:value="${medicine.name}"
+									th:text="${medicine.name}"
+									th:field="*{medicineList[__${itr.index}__].name}" />
+								</td>
+								<td><label th:text="${medicine.description}"></label> <input
+									type="hidden" th:value="${medicine.description}"
+									th:field="*{medicineList[__${itr.index}__].description}" /></td>
+								<td><label th:text="|RM${medicine.price}|" class="price"></label>
+									<input type="hidden" th:value="${medicine.price}"
+									th:field="*{medicineList[__${itr.index}__].price}" /></td>
+								<td><input type="checkbox"
+									th:id="|medicine-check-${medicine.id}|"
+									th:field="*{medicineList[__${itr.index}__].checked}" /></td>
+							</tr>
+						</table>
+					</div>
+					<input type="submit" value="Confirm" />
+				</form>
+			</main>
+
+		</div>
+	</div>
+	<script>
+		
+	</script>
+</body>
+</html>

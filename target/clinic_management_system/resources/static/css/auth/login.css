@@ -1,0 +1,78 @@
+@charset "ISO-8859-1";
+
+table tr td {
+	width: 200px;
+}
+
+table tr:nth-child(2) td {
+	padding-bottom: 30px;
+}
+
+table tr:nth-child(8) td {
+	padding-bottom: 20px;
+}
+
+table tr:nth-child(3), table tr:nth-child(5) {
+	height: 20px;
+}
+
+table tr:nth-child(7), table tr:nth-child(8), table tr:nth-child(10) {
+	height: 50px;
+}
+
+table tr:nth-child(12) {
+	height: 100px;
+}
+
+table tr:nth-child(11) {
+	height: 20px;
+}
+
+table tr:nth-child(4) td {
+	padding-bottom: 20px;
+}
+
+table tr:nth-child(13) td{
+	text-align:center;
+}
+
+table tr:nth-child(13) td button{
+	border:0;
+	background-color:transparent;
+	color:#abdbe3;
+}
+
+.label {
+	font-weight: bold;
+}
+
+input[type=text], input[type=password] {
+	border: 1px solid lightgray;
+	outline: 0;
+	padding: 10px 10px;
+	border-radius: 5px;
+	width:100%;
+}
+
+
+input[type=submit] {
+	border: 0;
+	border-radius: 3px;
+	background-color: #abdbe3;
+	color: white;
+	padding: 10px 40px;
+}
+
+.container {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	height: 100vh;
+}
+
+.form_container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-top: 30px;
+	padding-bottom: 30px;
+}

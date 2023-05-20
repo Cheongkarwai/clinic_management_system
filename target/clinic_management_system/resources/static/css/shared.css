@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@400;500;600&display=swap');
+
+body{
+	width:100%;	
+}
+
+*{
+    padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: "Poppins", sans-serif;
+    list-style:none;
+    text-decoration:none;
+     scroll-behavior: smooth;
+}
+
+.logo{
+    padding:0 50px;
+}
+header{
+    width:100%;
+    background-color:#abdbe3;
+    z-index:10;
+}
+nav{
+    width:100%;
+    padding:30px 0;
+    display:flex;
+    align-items:center;
+}
+
+nav ul li{
+    display:inline-block;
+    margin:0 10px;
+}
+
+nav ul li a{
+    color:white;
+}
+nav ul li a:hover{
+    border-bottom:2px solid white;
+}
+
+main{
+    min-height:800px;
+}
+footer{
+    background-color:#abdbe3;
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+    justify-content:space-around;
+    align-items:center;
+    color:white;
+}
+
+.left-footer{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    padding:100px;
+}
+
+.right-footer{
+	padding:100px;
+}
+
+
+
+.left-footer a{
+    color:white;
+}
+.right-footer h1{
+    padding-bottom:10px;
+}
+
+.error {
+	color: red;
+}
+
+.profile-login {
+	position: absolute;
+	top: 30px;
+}
+
+#drop-down {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	box-shadow: 1px 1px 1px 1px gray;
+	background-color: white;
+}
+
+#logout-form-btn{
+	width:100%;
+	height:100%;
+	background-color:white;
+	
+}
+
+#drop-down a ,#logout-form-btn{
+	text-decoration: none;
+	padding: 5px 5px;
+	border: 1px solid gray;
+	color: black;
+	font-size:15px;
+	text-align:center;
+	cursor:pointer;
+}
+
+.off {
+	visibility: hidden;
+}
+
+#profile:hover #drop-down {
+	background-color: blue;
+}
+
+input[type=submit]{
+	cursor:pointer;
+}
+
+.profile-container{
+	position:absolute;
+	top:0 ;
+	right:150px;
+}

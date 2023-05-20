@@ -1,0 +1,161 @@
+.main-section{
+    background-image:url("../img/clinic-bg.jpg");
+    background-position:center;
+    background-size:cover;
+    letter-spacing: 1px;
+    
+}
+.main-section-content h1{
+    font-size:60px;
+}
+section{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    height:100vh;
+}
+.main-section-content{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:60px;
+    width:100%;
+    color:white;
+}
+
+.main-section-content a,.about-us-title a,.job-section-content a{
+    border-radius:25px;
+    background-color:gray;
+    text-align: center;
+    padding:10px 0;
+    transition:all 0.5s ease-in-out;
+    width:200px;
+    letter-spacing: 1px;
+    color:white;
+}
+.main-section-content a{
+	font-size:15px;
+}
+
+.main-section-content a:hover,.about-us-title a:hover,.job-section-content a:hover{
+    box-shadow: inset  200px 0 0 0 #8ee0ff;
+}
+
+.specialization-section h2{
+    text-align:center;
+    padding-top:50px;
+}
+.specialization-content{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border:2px solid white;
+    height:100%;
+    gap:250px;
+}
+.specialization-box{
+    width:300px;
+    height:300px;
+    border-radius:25px;
+    box-shadow:2px 2px 2px 2px rgb(218, 218, 218);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:50px;
+    transition:all 0.3s ease-in-out;
+}
+
+.specialization-box:hover{
+    margin-bottom:10px;
+}
+
+#diagnostic-box h4,#diagnostic-box i{
+    color:pink;
+}
+#syringe-box h4,#syringe-box i{
+    color:lightskyblue;
+}
+#medication-box h4,#medication-box i{
+    color:darkviolet;
+}
+#primary-care-box h4,#primary-care-box i{
+    color:hotpink;
+}
+#diagnostic-box h4,#syringe-box h4,#medication-box h4,#primary-care-box h4{
+    font-size:25px;
+}
+#diagnostic-box i,#syringe-box i,#medication-box i,#primary-care-box i{
+    font-size:80px;
+}
+
+.about-us-section{
+    border-top:1px solid rgb(218, 218, 218);
+    border-bottom:1px solid  rgb(218, 218, 218);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.about-us-section div:nth-child(1){
+    display: flex;
+    align-items:center;
+    gap:200px;
+}
+
+.about-us-title{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    gap:100px;
+    width:100%;
+    height:100%;
+}
+
+.about-us-title h2,.job-section-content h2,.self-care-section h2,.specialization-section h2{
+    font-size:40px;
+    transition:all 0.5s ease-in-out;
+}
+
+.self-care-section{
+    border-top:1px solid rgb(190, 188, 188);
+}
+.self-care-section-content{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:200px;
+
+}
+.self-care-section-content h2:hover,.about-us-title h2:hover,.job-section-content h2:hover,.specialization-section h2:hover{
+    color:#8ee0ff;
+    
+}
+.job-section-content{
+    display: flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:70px;
+}
+
+.appointment-section{
+    align-items:center;
+    border-top:1px solid lightgray;
+}
+
+#appointment-form{
+    box-shadow:2px 2px 2px rgb(228, 224, 224);
+    padding:50px 100px;
+    border:1px solid lightgray;
+}
+#appointment-form h2{
+    margin:10px 0;
+}
+#appointment-form input{
+    margin:5px 0;
+    width:100%;
+    border-radius:15px;
+    padding:5px 10px;
+    border:1px solid gray;
+}

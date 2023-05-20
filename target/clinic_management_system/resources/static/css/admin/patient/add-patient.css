@@ -1,0 +1,20 @@
+
+
+ input[type=text], input[type=email], input[type=date]
+	{
+	padding: 5px 0;
+	border-radius: 5px;
+	border: 1px solid gray;
+	width: 100%;
+}
+
+table tr td {
+	padding: 5px 10px;
+}
+
+table {
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3)
+		0px 1px 3px -1px;
+	border-radius: 5px;
+	padding: 5px 50px;
+}

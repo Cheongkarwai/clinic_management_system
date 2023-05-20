@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<th:block th:fragment="footer">
+		<div class="left-footer">
+			<h3>Quick Links</h3>
+			<a th:href="@{/}">Home</a> <a th:href="@{/service}">Our Service</a> <a
+				th:href="@{/about}">About Us</a> <a th:href="@{/job}">Job
+				Opportunities</a>
+		</div>
+		<div class="right-footer">
+			<h1>CSPJ</h1>
+			<i class="fa-solid fa-envelope"></i>
+			<p>cspj@gmail.com</p>
+			<i class="fa-solid fa-phone"></i>
+			<p>+6011-11111111</p>
+			<i class="fa-solid fa-location-pin"></i>
+			<p>Taman Sri</p>
+			<p>43200, Cheras Selangor</p>
+		</div>
+	</th:block>
+</body>
+</html>

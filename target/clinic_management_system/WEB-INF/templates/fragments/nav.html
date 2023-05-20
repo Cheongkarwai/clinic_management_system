@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<nav th:fragment="header">
+		<div class="logo">
+			<img th:src="@{/static/img/ucsi-logo.png}" width="200" />
+		</div>
+		<ul>
+			<li><a th:href="@{/}">Home</a></li>
+			<li><a th:href="@{/service}">Our Services</a></li>
+			<li><a th:href="@{/about}">About Us</a></li>
+			<li><a th:href="@{/job}">Job Opportunities</a></li>
+		</ul>
+		<div class="profile-container">
+			<div class="profile-login">
+				<th:block sec:authorize="isAnonymous()">
+					<a th:href="@{/auth/login/index}" id="profile">Login</a>
+				</th:block>
+				<th:block sec:authorize="isAuthenticated()">
+					<a sec:authentication="name" href="#" id="profile"></a>
+					<div id="drop-down" class="off">
+						<a th:href="@{/orders/index}">View Bills</a> <a
+							th:href="@{/user/{userId}/profile(userId=${#authentication.name})}">View
+							Profile</a>
+						<form th:action="@{/logout}" th:method="POST" id='logout-form'>
+							<input type='submit' value='Logout' id='logout-form-btn' />
+						</form>
+					</div>
+				</th:block>
+			</div>
+		</div>
+	</nav>
+</body>
+</html>

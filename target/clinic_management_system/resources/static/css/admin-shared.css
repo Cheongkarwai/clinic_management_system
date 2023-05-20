@@ -1,0 +1,145 @@
+@import
+	url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@400;500;600&display=swap')
+	;
+
+html, body {
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: Arial;
+}
+
+* {
+	list-style: none;
+	text-decoration: none;
+	font-family: "Poppins", sans-serif;
+}
+
+.container {
+	display: flex;
+	height: 100%;
+}
+
+
+
+aside,aside div {
+	display: flex;
+	flex-direction: column;
+}
+
+aside{
+	background-color: #abdbe3;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+	height:100%;
+}
+
+aside div{
+	justify-content:center;
+	align-items:center;
+	padding:30px 0;
+}
+
+aside ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	min-width:250px;
+}
+
+aside ul li a {
+	font-size: 14px;
+	padding:10px 0;
+	padding-left:30px;
+	display: block;
+	transition: all 0.3s ease-in-out;
+	color: white;
+}
+
+
+aside div:nth-child(2) a {
+	background-image: url("/static/img/dashboard_black.png");
+}
+
+aside div:nth-child(2) a:hover {
+	background-image: url("/static/img/dashboard_white.png");
+}
+
+aside div:nth-child(3) a {
+	background-image: url("/static/img/patient_black.png");
+}
+
+aside div:nth-child(3) a:hover {
+	background-image: url("/static/img/patient_white.png");
+}
+
+aside div:nth-child(4) a {
+	background-image: url("/static/img/appointment_black.png");
+}
+
+aside div:nth-child(4) a:hover {
+	background-image: url("/static/img/appointment_white.png");
+}
+
+aside div:nth-child(5) a {
+	background-image: url("/static/img/medicine_black.png");
+}
+
+aside div:nth-child(5) a:hover {
+	background-image: url("/static/img/medicine_white.png");
+}
+
+aside a:hover {
+	padding-left: 50px;
+	background-color:white;
+	color:black;
+}
+
+#admin-page {
+	border: 0;
+}
+
+@media(max-width:500px){
+	.container{
+		flex-direction:column;
+	}
+}
+
+.error {
+	color: red;
+}
+
+
+.sub-container {
+	height: 100%;
+	width: 100%;
+	display: grid;
+	grid-template-rows: 100px 1fr;
+}
+
+.content-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+input[type=submit] {
+	background-color: #abdbe3;
+	border: 0;
+	padding: 15px 0;
+	color: white;
+	cursor: pointer;
+	border-radius: 6px;
+	margin-top: 25px;
+	font-size: 15px;
+	width: 100%;
+}
+
+
+.back-btn{
+	padding:20px 20px;
+}
+
+/*--------------------------------------------------*/

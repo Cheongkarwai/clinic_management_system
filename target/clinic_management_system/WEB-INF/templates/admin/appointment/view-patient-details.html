@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/static/css/admin-shared.css}" />
+<style>
+.sub-container {
+	height: 100%;
+	width: 100%;
+	display: grid;
+	grid-template-rows: 0.5fr 1fr;
+	/* flex-direction: column;
+	justify-content: center;
+	align-items: center; */
+}
+
+.content-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction:column;
+}
+
+input {
+	padding: 5px 10px;
+	border-radius: 5px;
+	border: 1px solid gray;
+	width:100%;
+}
+
+textarea{
+	width:100%;
+}
+
+table tr td {
+	padding: 10px 10px;
+}
+
+table tr td:nth-child(2){
+	width:300px;
+}
+
+table {
+	border: 1px solid black;
+	border-radius: 10px;
+	padding: 20px 50px;
+}
+
+.btn{
+	border:1px solid black;
+	padding:10px 15px;
+	border-radius:5px;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<aside th:insert="fragments/sideMenu.html :: sideMenu"></aside>
+		<div class="sub-container">
+			<div class="back-btn">
+				<a th:href="@{/appointments/manage-appointment/index}" class="btn">Back</a>
+			</div>
+			<div class="content-container">
+				<h1>Patient Details</h1>
+				<table>
+					<tr>
+						<td><label>Name</label></td>
+						<td><input type="text" readonly th:value="${patient.name}" />
+					</tr>
+					<tr>
+						<td><label>SSN</label></td>
+						<td><input type="text" readonly th:value="${patient.SSN}" />
+					</tr>
+					<tr>
+						<td><label>Date Of Birth</label></td>
+						<td><input type="text" readonly
+							th:value="${patient.dateOfBirth}" /></td>
+					</tr>
+					<tr>
+						<td><label>Email Address</label></td>
+						<td><input type="text" readonly
+							th:value="${patient.emailAddress}" /></td>
+					</tr>
+					<tr>
+						<td><label>Gender</label></td>
+						<td><input type="text" readonly th:value="${patient.gender}" />
+						</td>
+					</tr>
+					<tr>
+						<td><label>Address Line 1</label></td>
+						<td><textarea readonly 
+							th:text="${patient.address.address_line_1}"></textarea></td>
+					</tr>
+					<tr>
+						<td><label>Address Line 2</label></td>
+						<td><input type="text" readonly
+							th:value="${patient.address.address_line_2}" /></td>
+					</tr>
+					<tr>
+						<td><label>City</label></td>
+						<td><input type="text" readonly
+							th:value="${patient.address.city}" /></td>
+					</tr>
+					<tr>
+						<td><label>Postcode</label></td>
+						<td><input type="text" readonly
+							th:value="${patient.address.postcode}" /></td>
+					</tr>
+					<tr>
+						<td><label>State</label></td>
+						<td><input type="text" readonly
+							th:value="${patient.address.state}" /></td>
+					</tr>
+
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

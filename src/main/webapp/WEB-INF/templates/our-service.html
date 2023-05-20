@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+	rel="stylesheet" type="text/css" />
+<link rel="stylesheet" th:href="@{/static/css/shared.css}" />
+<link rel="stylesheet" th:href="@{/static/css/our-service.css}" />
+</head>
+<body>
+	<div id="container">
+		<header th:insert="fragments/nav.html :: header">
+		</header>
+		<main>
+
+			<section class="services" id="services">
+				<center>
+					<h1 class="heading">
+						Our <span>Services</span>
+					</h1>
+				</center>
+				<br /> <br />
+				<div class="box-container">
+
+					<div class="box">
+						<i class="fas fa-notes-medical"></i>
+						<h4>Free Checkups</h4>
+						<p>A routine checkup is a visit to a primary care physician
+							with the goal of keeping one's health in check. Routine checks
+							are more concerned with avoiding sickness than with treating a
+							current symptom or a previously diagnosed condition.</p>
+						<a href="#"><span class=""></span> </a>
+					</div>
+
+
+
+					<div class="box">
+						<i class="fas fa-user-md"></i>
+						<h4>Expert Doctors</h4>
+						<p>Physicians are medical experts since the word physic
+							originally applied to both the profession of medicine and natural
+							science.</p>
+						<a href="#"><span class=""></span> </a>
+					</div>
+
+					<div class="box">
+						<i class="fas fa-virus-slash"></i>
+						<h3>Vaccination</h3>
+						<p>Vaccination is the process of administering a vaccine to
+							aid the immune system in developing immunity to a disease.
+							Vaccines comprise a weakened, live, or deceased microbe or virus,
+							as well as proteins or toxins from the organism. They help
+							prevent illness from infectious diseases by increasing the body's
+							adaptive immunity.</p>
+						<a href="#"><span class=""></span> </a>
+					</div>
+
+					<div class="box">
+						<i class="fas fa-pills"></i>
+						<h4>Medicines</h4>
+						<p>Medicines are chemicals or substances that are used to
+							treat, stop, or prevent disease, alleviate symptoms, or aid in
+							the identification of ailments. Medical advancements have enabled
+							doctors to heal numerous ailments and save lives.</p>
+						<a href="#"><span class=""></span> </a>
+					</div>
+
+					<div class="box">
+						<i class="fas fa-procedures"></i>
+						<h4>Bed Facility</h4>
+						<p>Regularly maintained and manned, and always ready to care
+							for admitted patients. They cover beds for patients who are
+							formally admitted to a facility for treatment and care and stay
+							for at least one night.</p>
+						<a href="#"><span class=""></span> </a>
+					</div>
+
+
+					<div class="box">
+						<i class="fas fa-heartbeat"></i>
+						<h4>Total Care</h4>
+						<p>Total care refers to long-term care institutions that are
+							responsible for addressing all of a resident's requirements.
+							While some patients receiving so-called complete care may be able
+							to satisfy all or some of their needs for daily living activities
+							without the aid of a care giver, the facility and its personnel
+							must supervise the resident to ensure those needs are satisfied.
+						</p>
+						<a href="#"><span class=""></span> </a>
+					</div>
+
+				</div>
+				</section>
+		</main>
+		<footer th:insert="fragments/footer :: footer">
+		</footer>
+	</div>
+	<script>
+		document.getElementById("profile").addEventListener(
+				"click",
+				function() {
+					console.log("Hi");
+					document.getElementById("drop-down").classList
+							.toggle("off");
+				});
+	</script>
+</body>
+</html>

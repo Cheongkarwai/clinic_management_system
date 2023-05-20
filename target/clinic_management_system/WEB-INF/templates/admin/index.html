@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Page</title>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+	rel="stylesheet" type="text/css" />
+<link rel="stylesheet" th:href="@{/static/css/admin-shared.css}" />
+</head>
+<body>
+	<div class="container">
+		<!--         <header>
+            <div>
+                <div class="left-panel">
+                    <img th:src="@{/static/img/logo.png}" width="120" height="120" />
+                </div>
+                <div class="right-panel">
+                    <div>
+                       <form th:action="@{/logout}" method="POST">
+                       		<input type="submit" value="logout" />
+                       </form>
+                    </div>
+                </div>               
+            </div>
+        </header> -->
+		<aside th:insert="fragments/sideMenu.html :: sideMenu"></aside>
+	</div>
+<!-- 	<script>
+   		let dashboard = document.getElementById("dashboard-btn");
+   		let manageAppointment = document.getElementById("manage-appointment-btn");
+   		let managePatient = document.getElementById("manage-patient-btn");
+   		let medicineDispensing = document.getElementById("medicine-dispensing-btn");
+   		
+   		let adminPage = document.getElementById("admin-page");
+   		
+   		dashboard.addEventListener("click",()=>{
+   			adminPage.src = "/admin/dashboard";
+   		});
+   		manageAppointment.addEventListener("click",()=>{
+   			adminPage.src = "/clinic_management_system/appointments/index";
+   		});
+   		managePatient.addEventListener("click",()=>{
+   			adminPage.src = "/clinic_management_system/patients/index";
+   		});
+   		medicineDispensing.addEventListener("click",()=>{
+   			adminPage.src = "/medicines/index";
+   		});
+   		
+
+   </script> -->
+</body>
+</html>

@@ -1,0 +1,30 @@
+
+.heading{
+    text-align: center;
+    padding-bottom: 2rem;
+    text-shadow: var(--text-shadow);
+    text-transform: uppercase;
+    color:var(--black);
+    font-size: 5rem;
+    letter-spacing: .4rem;
+}
+
+.heading span{
+    text-transform: uppercase;
+    color:#8ee0ff;
+}
+
+.profile-layout{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    margin:50px 400px;
+    padding:0px 100px;
+}
+
+.profile-layout input{
+    padding:5px 10px;
+    border:1px solid #8ee0ff;
+    border-radius:10px;
+    margin:5px 0;
+}

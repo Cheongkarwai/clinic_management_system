@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<th:block  th:fragment="sideMenu">
+		<div>
+			<img th:src="@{/static/img/ucsi-logo.png}" width="150" />
+			<h5>Administration Page</h5>
+		</div>
+		<ul>
+			<li><a th:href="@{/admin/dashboard}"> Dashboard </a></li>
+			<li><a th:href="@{/patients/manage-patient/index}">Manage Patient</a></li>
+			<li><a th:href="@{/appointments/manage-appointment/index}">Manage
+					Appointment</a></li>
+			<li><a th:href="@{/medicines/manage-medicines/index}">Medication</a></li>
+		</ul>
+	</th:block>
+</body>
+</html>

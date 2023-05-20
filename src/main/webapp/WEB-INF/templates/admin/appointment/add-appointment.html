@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/static/css/admin-shared.css}" />
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
+</head>
+<body>
+
+	<div class="container-fluid h-100">
+		<div class="row h-100">
+			<aside class="col-md-2 h-100"
+				th:insert="fragments/sideMenu.html :: sideMenu"></aside>
+			<div class="col-md-10">
+				<main class="sub-container">
+					<div class="back-btn">
+						<a th:href="@{/appointments/manage-appointment/index}" class="btn">Back</a>
+					</div>
+					<div class="content-container">
+						<form class="border px-5 py-5"
+							id="create-appointment-form" th:method="POST"
+							th:action="@{/appointments/add-appointment/add}"
+							th:object="${appointment}">
+							<table class="table table-borderless">
+								<tr>
+									<td colspan="3">
+										<h1>Make Appointment</h1>
+									</td>
+
+								</tr>
+								<tr>
+									<td><label>Patient ID</label></td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td colspan="3"><select
+										id="create-appointment-patient-select" name="patientId"
+										th:field="*{patientId}" class="w-100 p-2 border">
+											<option value="">Select a patient</option>
+											<option th:each="patient : ${patients}"
+												th:text="|${patient.name} - ${patient.SSN}|"
+												th:value="${patient.id}"></option>
+									</select></td>
+								</tr>
+								<tr>
+									<td colspan="3">
+										<div th:if="${#fields.hasErrors('patientId')}"
+											th:errors="*{patientId}" class="error"></div>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3"><label>Patient Name</label></td>
+								</tr>
+								<tr>
+									<td colspan="3"><input class="w-100 border p-2" type="text" disabled
+										id="create-appointment-patient-name-input" /></td>
+								</tr>
+								<tr>
+									<td colspan="3"><label>Appointment From</label></td>
+								</tr>
+								<tr>
+									<td colspan="3"><input class="w-100 border p-2" type="datetime-local"
+										id="time-start" name="appointmentStartDateTime"
+										th:field="*{startDateTime}" /></td>
+
+								</tr>
+								<tr>
+									<td colspan="3">
+										<div th:if="${#fields.hasErrors('startDateTime')}"
+											th:errors="*{startDateTime}" class="error"></div>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3"><label>Appointment To</label></td>
+								</tr>
+								<tr>
+									<td colspan="3"><input  class="w-100 border p-2" type="datetime-local"
+										id="time-stop" name="appointmentEndDateTime" disabled
+										th:field="*{endDateTime}" /></td>
+								</tr>
+								<tr>
+									<td colspan="3">
+
+										<div th:if="${#fields.hasErrors('endDateTime')}"
+											th:errors="*{endDateTime}" class="error"></div>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3"><label>Doctor</label></td>
+								</tr>
+								<tr>
+									<td colspan="3"><select  class="w-100 border p-2" name="doctorId"
+										th:field="*{doctorId}">
+											<option value="">Select a doctor</option>
+											<option th:each="doctor : ${doctorList}"
+												th:text="|${doctor.name} - ${doctor.specialization}|"
+												th:value="${doctor.id}"></option>
+									</select></td>
+								</tr>
+								<tr>
+									<td colspan="3">
+										<div th:if="${#fields.hasErrors('doctorId')}"
+											th:errors="*{doctorId}" class="error"></div>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3"><input  class="w-100 border p-2" type="submit" /></td>
+								</tr>
+							</table>
+						</form>
+					</div>
+
+				</main>
+			</div>
+		</div>
+
+	</div>
+</body>
+<script th:inline="javascript">
+var latestAppointment = /*[[${latestAppointment}]]*/'';
+const timeStart = document.getElementById("time-start");
+const timeStop = document.getElementById("time-stop");
+document.getElementById("create-appointment-patient-select").addEventListener("change",function(){
+document.getElementById("create-appointment-patient-name-input").value = document.getElementById("create-appointment-patient-select").text;
+});
+
+let date = new Date();
+timeStart.min = latestAppointment;
+
+
+timeStart.addEventListener("change", () => {
+	timeStop.min = timeStart.value;
+	timeStop.disabled = false;
+});
+
+document.getElementById("create-appointment-patient-select").addEventListener("change",function(){
+	
+	let name = document.getElementById("create-appointment-patient-select").options[document.getElementById("create-appointment-patient-select").selectedIndex].text.split("-");
+	document.getElementById("create-appointment-patient-name-input").value = name[0];
+});
+</script>
+</html>

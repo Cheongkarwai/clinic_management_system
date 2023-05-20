@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/static/css/admin-shared.css}" />
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
+</head>
+<body>
+	<div class="container-fluid h-100">
+		<div class="row h-100">
+			<aside class="col-md-2 h-100"
+				th:insert="fragments/sideMenu.html :: sideMenu"></aside>
+			<div class="col-md-10">
+				<main class="col-md-10 px-5">
+					<h1 class="py-5">Medicines Selection</h1>
+					<form id="form" method="POST" th:object="${medicineForm}"
+						th:action="@{/medicines/patient/{patientId}/appointment/{appointmentId}/checkout
+		(patientId=${patientId},appointmentId=${appointmentId})}">
+						<div class="form-component-container">
+							<table class="table border">
+								<tr>
+									<th class="text-center">No</th>
+									<th>Name</th>
+									<th>Description</th>
+									<th>Price</th>
+								</tr>
+								<tr th:each="medicine,itr : ${medicines}">
+									<td class="text-center"><label th:text="${itr.count}"></label> <input
+										type="hidden" th:value="${medicine.id}"
+										th:field="*{medicineList[__${itr.index}__].id}" /></td>
+									<td>
+										<!--label th:text="${medicine.name}" class="name"></label--> <input
+										type="hidden" th:value="${medicine.name}"
+										th:text="${medicine.name}"
+										th:field="*{medicineList[__${itr.index}__].name}" />
+									</td>
+									<td><label th:text="${medicine.description}"></label> <input
+										type="hidden" th:value="${medicine.description}"
+										th:field="*{medicineList[__${itr.index}__].description}" /></td>
+									<td><label th:text="|RM${medicine.price}|" class="price"></label>
+										<input type="hidden" th:value="${medicine.price}"
+										th:field="*{medicineList[__${itr.index}__].price}" /></td>
+									<td><input type="checkbox"
+										th:id="|medicine-check-${medicine.id}|"
+										th:field="*{medicineList[__${itr.index}__].checked}" /></td>
+								</tr>
+							</table>
+						</div>
+						<input class="border btn w-100" type="submit" value="Confirm" />
+					</form>
+				</main>
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

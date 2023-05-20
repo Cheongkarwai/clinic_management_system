@@ -1,0 +1,23 @@
+
+
+table{
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3)
+		0px 1px 3px -1px;
+	border-radius: 5px;
+	padding: 10px 50px;
+}
+
+
+
+select, input[type=text], input[type=datetime-local] {
+	padding: 10px 0;
+	border: 1px solid gray;
+	border-radius: 5px;
+	width: 100%;
+}
+
+.content-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

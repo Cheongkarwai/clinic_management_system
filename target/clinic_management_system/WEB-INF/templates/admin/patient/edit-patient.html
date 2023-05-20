@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="stylesheet"
+	th:href="@{/static/css/admin/patient/edit-patient.css}" />
+<link rel="stylesheet" th:href="@{/static/css/admin-shared.css}" />
+</head>
+<body>
+	<div class="container">
+		<aside th:insert="fragments/sideMenu.html :: sideMenu"></aside>
+		<div class="sub-container">
+			<div class="back-btn">
+				<a th:href="@{/patients/manage-patient/index}">Back</a>
+			</div>
+			<div class="content-container">
+				<form
+					th:action="@{/patients/{patientId}(patientId=${patientForm.id})}"
+					th:method="PUT" id="add-patient-form" th:object="${patientForm}">
+					<table>
+						<tr>
+							<th colspan="2"><h1>Edit Patient</h1></th>
+						</tr>
+						<tr>
+							<td colspan="2"><input type="hidden" th:field=*{id} /></td>
+						</tr>
+						<tr>
+							<td><label>Name:</label></td>
+							<td><input type="text" id="applicant-name"
+								th:field="*{name}" /></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+									class="error"></div>
+							</td>
+						</tr>
+						<tr>
+							<td><label>Date of Birth</label></td>
+							<td><input type="date" id="applicant-dob" name="dateOfBirth"
+								th:field="*{dateOfBirth}" /></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<div th:if="${#fields.hasErrors('dateOfBirth')}"
+									th:errors="*{dateOfBirth}" class="error"></div>
+							</td>
+						</tr>
+						<tr>
+							<td><label>SSN</label></td>
+							<td><input type="text" id="applicant-ssn" th:field="*{SSN}" />
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<div th:if="${#fields.hasErrors('SSN')}" th:errors="*{SSN}"
+									class="error"></div>
+							</td>
+						</tr>
+						<tr>
+							<td><label>Gender</label></td>
+							<td>Female<input type="radio" value="M" name="gender"
+								th:field="*{gender}" /> Male<input type="radio" value="F"
+								name="gender" th:field="*{gender}" />
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<div th:if="${#fields.hasErrors('gender')}"
+									th:errors="*{gender}" class="error"></div>
+							</td>
+						</tr>
+						<tr>
+							<td><label>Contact</label></td>
+							<td><input type="text" id="applicant-contact"
+								th:field="*{contact}" /></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<div th:if="${#fields.hasErrors('contact')}"
+									th:errors="*{contact}" class="error"></div>
+							</td>
+						</tr>
+						<tr>
+							<td><label>Email Address</label></td>
+							<td><input type="email" id="applicant-email"
+								th:field="*{emailAddress}" /></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<div th:if="${#fields.hasErrors('emailAddress')}"
+									th:errors="*{emailAddress}" class="error"></div>
+							</td>
+						</tr>
+						<tr>
+							<td><label>Address Line 1</label></td>
+							<td><input type="text" id="applicant-address-1"
+								th:field="*{address_line_1}" /></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<div th:if="${#fields.hasErrors('address_line_1')}"
+									th:errors="*{address_line_1}" class="error"></div>
+							</td>
+						</tr>
+						<tr>
+							<td><label>Address Line 2</label></td>
+							<td><input type="text" id="applicant-address-2"
+								th:field="*{address_line_2}" /></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<div th:if="${#fields.hasErrors('address_line_2')}"
+									th:errors="*{address_line_2}" class="error"></div>
+							</td>
+						</tr>
+						<tr>
+							<td><label>Postcode</label></td>
+							<td><input type="text" id="applicant-postcode"
+								th:field="*{postcode}" /></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<div th:if="${#fields.hasErrors('postcode')}"
+									th:errors="*{postcode}" class="error"></div>
+							</td>
+						</tr>
+						<tr>
+							<td><label>City</label></td>
+							<td><input type="text" id="applicant-city"
+								th:field="*{city}" /></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<div th:if="${#fields.hasErrors('city')}" th:errors="*{city}"
+									class="error"></div>
+							</td>
+						</tr>
+						<tr>
+							<td><label>State</label></td>
+							<td><input type="text" id="applicant-state"
+								th:field="*{state}" /></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<div th:if="${#fields.hasErrors('state')}" th:errors="*{state}"
+									class="error"></div>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><input type="submit" value="Add New Patient" /></td>
+						</tr>
+					</table>
+
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

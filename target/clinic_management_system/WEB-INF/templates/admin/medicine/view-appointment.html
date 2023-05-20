@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/static/css/medicine-dispensing.css}" />
+<link rel="stylesheet" th:href="@{/static/css/admin-shared.css}" />
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+	rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<main class="container">
+		<aside th:insert="fragments/sideMenu.html :: sideMenu"></aside>
+		<div class="content-layout">
+			<main class="sub-container">
+				<h1>Dispensing Medicine</h1>
+				<div>
+					<table class="appointment-table" id="medicine-table">
+						<tr>
+							<th>No</th>
+							<th>Patient ID</th>
+							<th>Patient Name</th>
+							<th>SSN</th>
+							<th>From</th>
+							<th>To</th>
+							<th>Doctor</th>
+							<th>Medicine</th>
+						</tr>
+						<tr th:each="appointment,itr : ${appointmentsThatHaveNoOrder}">
+							<td th:text="${itr.count}"></td>
+							<td th:text="${appointment.patient.id}"></td>
+							<td th:text="${appointment.patient.name}"></td>
+							<td th:text="${appointment.patient.SSN}"></td>
+							<td th:text="${appointment.appointmentStartDateTime}"></td>
+							<td th:text="${appointment.appointmentEndDateTime}"></td>
+							<td
+								th:text="|${appointment.doctor.name}-${appointment.doctor.specialization} |"></td>
+							<td>
+								<form method="GET"
+									th:action="@{/medicines/patient/{patientId}/appointment/{appointmentId}(patientId=${appointment.patient.id},
+					appointmentId=${appointment.id})}">
+									<input type="submit" class="btn" value="Dispense Medicine" />
+								</form>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</main>
+		</div>
+	</main>
+</body>
+</html>

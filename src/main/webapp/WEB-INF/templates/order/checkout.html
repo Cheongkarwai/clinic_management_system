@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<link rel="stylesheet" type="text/css" th:href="@{/static/css/checkout.css}" />
+<link rel="stylesheet" th:href="@{/static/css/shared.css}" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div id="container">
+		<header th:insert="fragments/nav.html :: header"> </header>
+		<main>
+			<div class="order-summary" style="overflow-y: scroll;">
+				<h3>Order Summary</h3>
+				<th:block th:each="orderDetails : ${orderDetailsList}">
+					<div class="order-summary-panel">
+						<div>
+							<h4 th:text="${orderDetails.name}"></h4>
+							<br /> <a href="#" th:text="${orderDetails.description}">DELETE</a>
+						</div>
+						<div>
+							<h5 th:text="'RM '+${orderDetails.subtotal}"></h5>
+							<br />
+							<h5>Quantity</h5>
+							<input type="text" style="width: 50px;" readonly th:value="${orderDetails.quantity}" />
+						</div>
+					</div>
+				</th:block>
+			</div>
+			<div class="price-outer">
+				<div class="price-inner">
+					<h3>Price Breakdown</h3>
+					<br />
+					<div class="price-panel">
+						<div>
+							<h4>Amount</h4>
+							<br />
+							<h4>SST (0%)</h4>
+						</div>
+						<div>
+							<h4 th:text="'RM '+${orderTotal}">RM300.00</h4>
+							<br />
+							<h4 th:text="'RM '+${orderTax}">RM3.00</h4>
+						</div>
+					</div>
+					<br />
+					<hr />
+					<br />
+					<div class="price-panel">
+						<div>
+							<h3>Total Amount</h3>
+						</div>
+						<div>
+							<h3 th:text="'RM '+ ${orderTotal + orderTax}">RM303.00</h3>
+						</div>
+					</div>
+					<br /> <br />
+					<div id="paypal-button-container"></div>
+				</div>
+			</div>
+		</main>
+		<footer>
+			<div class="left-footer">
+				<h3>Quick Links</h3>
+				<a th:href="@{/}">Home</a> <a th:href="@{/service}">Our Service</a> <a th:href="@{/about}">About Us</a> <a th:href="@{/job}">Job Opportunities</a>
+			</div>
+			<div class="right-footer">
+				<h1>CSPJ</h1>
+				<i class="fa-solid fa-envelope"></i>
+				<p>cspj@gmail.com</p>
+				<i class="fa-solid fa-phone"></i>
+				<p>+6011-11111111</p>
+				<i class="fa-solid fa-location-pin"></i>
+				<p>Taman Sri</p>
+				<p>43200, Cheras Selangor</p>
+			</div>
+		</footer>
+	</div>
+	<script src="https://www.paypal.com/sdk/js?client-id=ARDeAzASVTepHfMgzBz-Fc8opvSGGGnMS0I0s5rfjWOKsKxdSMvqUR4wA4qXMopPwvr_gMwdwmPQRAI_&currency=MYR"></script>
+
+	<script th:inline="javascript">
+   
+    //retrieve data
+    
+   	var order = /*[[${order}]]*/'';
+
+       const sendData = (method, url, data) => {
+        const xmlHttpRequest = new XMLHttpRequest();
+        xmlHttpRequest.open(method, url);
+        xmlHttpRequest.send(data);
+
+        xmlHttpRequest.onreadystatechange = () => {
+          if (xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200) {
+            console.log(xmlHttpRequest.response);
+          }
+        };
+      };  
+
+      const itemList = [];
+      let subTotal = 0;
+      for (let n of order.orderDetails) {
+    	  console.log(n);
+        itemList.push({
+          sku: n.id,
+          name: n.name,
+          description: n.description,
+          unit_amount: {
+            currency_code: "MYR",
+            value: n.item.price,
+          },
+          quantity: n.quantity,
+        });
+        subTotal += n.subtotal;
+      }
+      
+      paypal
+        .Buttons({
+          style: {
+            layout: "vertical",
+            color: "gold",
+            shape: "rect",
+            label: "paypal",
+          },
+          createOrder: function (data, actions) {
+
+            return actions.order.create({
+              payer: {
+                email_address: order.payer.emailAddress,
+                address: {
+                  address_line_1: order.payer.address.address_line_1,
+                  address_line_2: order.payer.address.address_line_2,
+                  admin_area_2: order.payer.address.state,
+                  admin_area_1: order.payer.address.city,
+                  postal_code: order.payer.address.postcode,
+                  country_code: "MY",
+                },
+                birth_date: order.payer.dateOfBirth,
+                name: {
+                  given_name: order.payer.name,
+                  surname: "",
+                },
+                phone: {
+                  phone_type: "MOBILE",
+                  phone_number: {
+                    national_number: order.payer.contact,
+                  },
+                },
+              },
+              purchase_units: [
+                {
+                  amount: {
+                    value: subTotal,
+                    currency_code: "MYR",
+                    breakdown: {
+                      item_total: {
+                        currency_code: "MYR",
+                        value: subTotal,
+                      },
+                    },
+                  },
+                  items: itemList,
+                },
+              ],
+            });
+          },
+          onApprove: function (data, actions) {
+            return actions.order.capture().then(function (details) {
+            	
+            	fetch("http://localhost:8080/orders/"+order.orderId,{
+            		"method":"PUT"
+            	}).then(res=>console.log(res.status))
+            	.catch(err=>console.log(err));
+            });
+          },
+          onCancel: function (data) {
+            alert("You have cancelled the payment");
+          },
+          onError: function (data) {
+            alert(data);
+          },
+        })
+        .render("#paypal-button-container");
+    </script>
+	<script>
+		document.getElementById("profile").addEventListener(
+				"click",
+				function() {
+					document.getElementById("drop-down").classList
+							.toggle("off");
+				});
+	</script>
+</body>
+</html>

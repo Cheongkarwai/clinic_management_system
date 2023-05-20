@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" th:href="@{/static/css/profile.css}" />
+<link rel="stylesheet" th:href="@{/static/css/shared.css}" />
+</head>
+<body>
+	<div id="container">
+		<header th:insert="fragments/nav.html :: header"> </header>
+		<main>
+			<section class="profile-section">
+				<br />
+				<h1 class="heading">
+					Patient
+					<span>Profile</span>
+				</h1>
+				<div class="profile-layout">
+					<label>Patient ID</label>
+					<input placeholder="Patient Id" type="text" disabled th:value="${userProfile.id}" />
+					<label>Patient name</label>
+					<input placeholder="Patient Name" type="text" required disabled th:value="${userProfile.name}" />
+					<label>SSN</label>
+					<input placeholder="MyKad No" type="text" required disabled th:value="${userProfile.SSN}" />
+					<label>Contact</label>
+					<input placeholder="Contact Number" type="text" required disabled th:value="${userProfile.contact}" />
+					<label>Email</label>
+					<input placeholder="Email Address" type="text" required disabled  th:value="${userProfile.emailAddress}" />
+					<label>Date of Birth</label>
+					<input placeholder="Date of Birth" type="date" required disabled th:value="${userProfile.dateOfBirth}" />
+					<label>Address Line 1</label>
+					<input placeholder="Address Line 1" type="text" required disabled th:value="${userProfile.address.address_line_1}" />
+					<label>Address Line 2</label>
+					<input placeholder="Address Line 2" type="text" required disabled th:value="${userProfile.address.address_line_2}" />
+					<label>Postcode</label>
+					<input placeholder="Postcode" type="text" required disabled th:value="${userProfile.address.postcode}" />
+					<label>City</label>
+					<input placeholder="City" type="text" required disabled th:value="${userProfile.address.city}" />
+					<label>State</label>
+					<input placeholder="State" type="text" required disabled th:value="${userProfile.address.state}" />
+				</div>
+			</section>
+		</main>
+		<footer>
+			<div class="left-footer">
+				<h3>Quick Links</h3>
+				<a th:href="@{/}">Home</a>
+				<a th:href="@{/service}">Our Service</a>
+				<a th:href="@{/about}">About Us</a>
+				<a th:href="@{/job}">Job Opportunities</a>
+			</div>
+			<div class="right-footer">
+				<h1>CSPJ</h1>
+				<i class="fa-solid fa-envelope"></i>
+				<p>cspj@gmail.com</p>
+				<i class="fa-solid fa-phone"></i>
+				<p>+6011-11111111</p>
+				<i class="fa-solid fa-location-pin"></i>
+				<p>Taman Sri</p>
+				<p>43200, Cheras Selangor</p>
+			</div>
+		</footer>
+	</div>
+	<script>
+		document.getElementById("profile").addEventListener(
+				"click",
+				function() {
+					document.getElementById("drop-down").classList
+							.toggle("off");
+				});
+	</script>
+</body>
+</html>

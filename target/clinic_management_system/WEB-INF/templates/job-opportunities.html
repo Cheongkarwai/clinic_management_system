@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+	rel="stylesheet" type="text/css" />
+<link rel="stylesheet" th:href="@{/static/css/shared.css}" />
+<link rel="stylesheet" th:href="@{/static/css/job-opportunities.css}" />
+</head>
+<body>
+	<div id="container">
+		<header th:insert="fragments/nav.html :: header">
+			
+		</header>
+		<main>
+			<section class="jobs" id="jobs">
+				<h1 class="heading">
+					Job <span> Opportunities</span>
+				</h1>
+
+				<div class="box-container">
+
+					<div class="box">
+						<div class="image">
+							<img th:src="@{/static/img/register nurse.jpg}" alt="">
+						</div>
+						<div class="content">
+
+							<h6>Registered Nurse</h6>
+							<p>Primary responsibilities include caring for sick, injured,
+								or recuperating patients and interacting with patients and
+								family. They also evaluate patients, do tests, keep patient
+								records, and assist physicians during operations. Registered
+								nurses educate patients about their problems and provide
+								treatment recommendations. They may also provide them emotional
+								assistance.</p>
+							<a href="#"> <span class=""></span>
+							</a>
+						</div>
+					</div>
+
+					<div class="box">
+						<div class="image">
+							<img th:src="@{/static/img/pharma.jpg}" alt="">
+						</div>
+						<div class="content">
+
+							<h6>Pharmacists</h6>
+							<p>Primary responsibilities include preparing and dispensing
+								prescription prescriptions as well as educating patients on how
+								to take their medications properly. They understand what drugs
+								treat, how they interact with other medications, and how to
+								prescribe them correctly. In addition, pharmacists monitor
+								pharmacy inventory and interact with hospital doctors regarding
+								specific medications. They may provide wellness checkups,
+								provide health advice, and administer immunizations to patients.</p>
+							<a href="#" class=""><span></span> </a>
+						</div>
+					</div>
+
+					<div class="box">
+						<div class="image">
+							<img th:src="@{/static/img/surgeon.jpeg}" alt="">
+						</div>
+						<div class="content">
+
+							<h6>Surgeon</h6>
+							<p>Surgeons perform surgical procedures on people to mend
+								injuries or treat illnesses or disorders. They often focus on
+								one form of surgery, such as orthopaedic, reconstructive, or
+								paediatric surgery. Surgeons also diagnose and treat patients
+								before and after surgery, provide medicines, and maintain
+								patient records. During procedures, they collaborate closely
+								with nurses and anesthesiologists.</p>
+							<a href="#"> <span class=""></span>
+							</a>
+						</div>
+					</div>
+
+					<div class="box">
+						<div class="image">
+							<img th:src="@{/static/img/medicaladclerk.jpeg}" alt="">
+						</div>
+						<div class="content">
+
+							<h6>Medical Admission Clerk</h6>
+							<p>Admissions clerks meet patients as they enter the hospital
+								and collect their medical and personal information, as well as
+								the purpose for their visit. They check the patient in and enter
+								their information into the hospital's computer system. They also
+								gather and enter insurance data. Medical admissions clerks may
+								answer phones, collect data, and communicate with nurses and
+								physicians while they are not engaging with patients.</p>
+							<a href="#"> <span class=""></span>
+							</a>
+						</div>
+					</div>
+
+					<div class="box">
+						<div class="image">
+							<img th:src="@{/static/img/medicalrecclerk.jpeg}" alt="">
+						</div>
+						<div class="content">
+
+							<h6>Medical Records Clerk</h6>
+							<p>Medical records clerks' primary responsibilities include
+								organizing and filing patient information such as personal and
+								medical histories, as well as admission and discharge
+								documentation. They provide hospital departments with the
+								documents and paperwork that they require. They are in charge of
+								keeping records safe, secret, and up to date. During hospital
+								audits, medical records clerks also supply information and
+								assistance.</p>
+							<a href="#"><span class=""></span> </a>
+						</div>
+					</div>
+
+					<div class="box">
+						<div class="image">
+							<img th:src="@{/static/img/coding.jfif}" alt="">
+						</div>
+						<div class="content">
+
+							<h6>Coding Specialists</h6>
+							<p>Coding experts work mostly in the billing department. They
+								classify and code health claims so that the hospital may be
+								reimbursed by insurance companies and government health-care
+								programs. They analyze claims to ensure they are eligible for
+								reimbursement and utilize computer tools to assign the
+								appropriate codes to procedures. In addition, they help with
+								insurance companies to address disputed claims.</p>
+							<a href="#"><span class=""></span> </a>
+						</div>
+					</div>
+
+					<div class="box">
+						<div class="image">
+							<img th:src="@{/static/img/trainee.jpg}" alt="">
+						</div>
+						<div class="content">
+
+							<h6>Nurses & Ward Assistant Trainees</h6>
+							<p>To provide pre- and post-graduate education and clinical
+								training from the philosophical standpoint of healthcare and
+								medicine as a human science. To enhance primary care education
+								and continuing health education to secure and support healthcare
+								personnel to engage in community health. To enhance education
+								and training systems to prepare health professoionals and
+								support the career development of all health personnel. To
+								engage the community as a means of social enlightenment, by
+								holding education seminars and giving support for health service
+								users, local residents, and medical institutions to gain medical
+								and healthcare knowledge and access to health technology.</p>
+							<a href="#"><span class=""></span> </a>
+						</div>
+					</div>
+
+				</div>
+
+			</section>
+
+		</main>
+		<footer th:insert="fragments/footer :: footer">
+		</footer>
+	</div>
+	<script>
+		document.getElementById("profile").addEventListener(
+				"click",
+				function() {
+					console.log("Hi");
+					document.getElementById("drop-down").classList
+							.toggle("off");
+				});
+	</script>
+</body>
+</html>

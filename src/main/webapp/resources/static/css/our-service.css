@@ -1,0 +1,98 @@
+.services .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
+    gap:2rem;
+    padding-bottom:100px;
+}
+
+.services .box-container .box{
+    background:#8ee0ff;
+    border-radius: .5rem;
+    box-shadow: #8ee0ff;
+    border-style:solid;
+    padding: 2.5rem;
+}
+
+.services .box-container .box i{
+	border-radius: .5rem;
+    border-color: #8ee0ff;
+    font-size: 5rem;
+    padding-bottom: .5rem;
+}
+
+.services .box-container .box h{
+    color: black;
+    font-size: 15pt;
+    padding:1rem 0;
+}
+
+.services .box-container .box p{
+    color:black;
+    font-size: 10pt;
+    line-height: 1.5rem;
+}
+
+.jobs .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap:2rem;
+}
+
+.jobs .box-container .box{
+    border-style:solid;
+    box-shadow: #8ee0ff;
+    border-radius: .5rem;
+    padding: 2rem;
+}
+
+.jobs .box-container .box .image{
+    height: 20rem;
+    overflow:hidden;
+    border-radius: .5rem;
+}
+
+.jobs .box-container .box .image img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.jobs .box-container .box:hover .image img{
+    transform:scale(1.2);
+}
+
+.jobs .box-container .box .content{
+    padding-top: 1rem;
+}
+
+
+
+.jobs .box-container .box .content h6{
+    color:#8ee0ff;
+    font-size: 15pt;
+}
+
+.jobs .box-container .box .content p{
+    color:black;
+    font-size: 10pt;
+    line-height: 1.8;
+    padding:1rem 0;
+}
+section{
+    padding:2rem 9%;
+}
+
+.heading{
+    text-align: center;
+    padding-bottom: 50px;
+    text-shadow: var(--text-shadow);
+    text-transform: uppercase;
+    color:var(--black);
+    font-size: 3rem;
+    letter-spacing: .4rem;
+}
+
+.heading span{
+    text-transform: uppercase;
+    color:#8ee0ff;
+}

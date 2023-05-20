@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+	rel="stylesheet" type="text/css" />
+<link rel="stylesheet" th:href="@{/static/css/shared.css}" />
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link rel="stylesheet" th:href="@{/static/css/index.css}" />
+</head>
+<body>
+	<div id="container">
+		<header th:insert="fragments/nav.html :: header"> </header>
+		<main>
+			<section class="main-section">
+				<div class="main-section-content">
+					<h1>UCSI</h1>
+					<h3>Come visit us for medical consultation !</h3>
+					<a href="#appointment">Book an appointment</a>
+				</div>
+			</section>
+			<section class="specialization-section">
+				<h2>Our Specialization</h2>
+				<div class="specialization-content">
+					<div class="specialization-box" data-aos="zoom-in"
+						id="diagnostic-box">
+						<i class="fa-solid fa-stethoscope"></i>
+						<h4>Diagnostic</h4>
+					</div>
+					<div class="specialization-box" data-aos="zoom-in" id="syringe-box">
+						<i class="fa-sharp fa-solid fa-syringe"></i>
+						<h4>Vaccination</h4>
+					</div>
+				</div>
+				<div class="specialization-content">
+					<div class="specialization-box" data-aos="zoom-in"
+						id="medication-box">
+						<i class="fa-sharp fa-solid fa-capsules"></i>
+						<h4>Medication</h4>
+					</div>
+					<div class="specialization-box" data-aos="zoom-in"
+						id="primary-care-box">
+						<i class="fa-sharp fa-solid fa-user-nurse"></i>
+						<h4>Primary Care</h4>
+					</div>
+				</div>
+			</section>
+			<section class="about-us-section">
+				<div>
+					<div class="about-us-title" data-aos="zoom-in">
+						<h2>About Us</h2>
+						<a href="">Learn more</a>
+					</div>
+					<div class="about-us-img" data-aos="zoom-in">
+						<img th:src="@{/static/img/doctor.png}" />
+					</div>
+				</div>
+			</section>
+			<section class="job-section">
+				<div class="job-section-content" data-aos="zoom-in">
+					<img th:src="@{static/img/group-of-doctors.png}" width="800px"
+						height="500px" />
+					<h2>Join Us Now</h2>
+					<a href="">Learn more</a>
+				</div>
+			</section>
+			<section class="self-care-section">
+				<div class="self-care-section-content" data-aos="fade-right">
+					<h2>How To Take Care of Yourself?</h2>
+					<iframe width="560" height="315"
+						src="https://www.youtube.com/embed/bARpudRvNgA"
+						title="YouTube video player" frameborder="0"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+						allowfullscreen style="border-radius: 10px;"></iframe>
+				</div>
+			</section>
+			<section class="appointment-section" id="appointment">
+				<form data-aos="zoom-in" th:method="POST"
+					th:action="@{/appointments/book}" id="appointment-form"
+					th:object="${applicant}">
+					<h2>APPLICANT'S INFORMATION</h2>
+					<label>Full Name(As per MyKad)</label> <br /> <input type="text"
+						name="name" placeholder="Enter your name" th:field="*{name}"
+						required />
+					<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+						class="error"></div>
+					<br /> <label>MyKad No</label> <br /> <input type="text"
+						name="SSN" placeholder="Enter your SSN" th:field="*{ssn}" required />
+					<div th:if="${#fields.hasErrors('ssn')}" th:errors="*{ssn}"
+						class="error"></div>
+					<br /> <label>Contact No</label> <br /> <input type="text"
+						name="contact" placeholder="Enter your contact number"
+						th:field="*{contact}" required />
+					<div th:if="${#fields.hasErrors('contact')}" th:errors="*{contact}"
+						class="error"></div>
+					<br /> <label>Email Address</label> <br /> <input type="email"
+						name="emailAddress" placeholder="Enter your email address"
+						th:field="*{emailAddress}" required />
+					<div th:if="${#fields.hasErrors('emailAddress')}"
+						th:errors="*{emailAddress}" class="error"></div>
+					<br /> <br /> <input type="submit" value="Make an appointment" />
+				</form>
+			</section>
+		</main>
+		<footer th:insert="fragments/footer.html :: footer">
+		</footer>
+	</div>
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<script>
+            AOS.init();
+          </script>
+	<script>
+          	let form = document.getElementById("appointment-form");
+          	form.addEventListener("submit",e=>{
+          		e.preventDefault();
+          		alert("Appointment submitted");
+          		form.submit();
+          	});
+          	
+          	document.getElementById("profile").addEventListener("click",function(){
+          		console.log("Hi");
+          		document.getElementById("drop-down").classList.toggle("off");
+          	});
+          </script>
+</body>
+</html>

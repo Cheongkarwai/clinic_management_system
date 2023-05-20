@@ -1,0 +1,42 @@
+table {
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+	overflow-y: scroll;
+	width:100%;
+	height:20vh;
+}
+
+table tr td {
+	text-align: center;
+
+}
+
+table tr th {
+	height: 80px;
+}
+
+table tr th:nth-child(1) {
+	width: 150px;
+}
+
+table tr th:nth-child(2) {
+	width: 200px;
+}
+
+table tr th:nth-child(3) {
+	width: 200px;
+}
+
+.form-group{
+	padding:40px 40px;
+}
+
+table tr th:nth-child(4) {
+	width: 200px;
+}
+
+table tr th:nth-child(5) {
+	width: 200px;
+}
+table tr th:nth-child(5) {
+	width: 200px;
+}

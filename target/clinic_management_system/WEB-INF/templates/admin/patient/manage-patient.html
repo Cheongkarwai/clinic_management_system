@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/static/css/admin-shared.css}" />
+<link rel="stylesheet"
+	th:href="@{/static/css/admin/patient/manage-patient.css}" />
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+	rel="stylesheet" type="text/css" />
+<style>
+.create-patient-layout {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal-content {
+	height: 70%;
+	width: 400px;
+}
+
+</style>
+</head>
+<body>
+	<div class="container">
+		<aside th:insert="fragments/sideMenu.html :: sideMenu"></aside>
+		<main>
+			<h1>Manage Patient</h1>
+			<div class="top">
+				<a id="add-new-patient-btn" th:href="@{/patients/add-patient/index}"><i
+					class="fa-solid fa-plus"></i> Add New Patient</a>
+			</div>
+			<br />
+			<table class="patient-table">
+				<tr>
+					<th>No</th>
+					<th>Patient Name</th>
+					<th>SSN</th>
+					<th>Contact No</th>
+					<th colspan="2">Action</th>
+					<th>Medical History</th>
+				</tr>
+				<tr th:each="patient,itr : ${patientList}">
+					<td th:text="${itr.count}"></td>
+					<td th:text="${patient.name}"></td>
+					<td th:text="${patient.SSN}"></td>
+					<td th:text="${patient.contact}"></td>
+					<td>
+						<form
+							th:action="@{/patients/{patientId}/edit(patientId=${patient.id})}"
+							method="GET">
+							<button class="btn" type="submit">Edit</button>
+						</form>
+					</td>
+					<td>
+						<form
+							th:action="@{/patients/{patientId}(patientId=${patient.id})}"
+							th:method="DELETE">
+							<button class="btn" type="submit" id="delete-btn">Delete</button>
+						</form>
+					</td>
+					<td>
+						<button class="btn" id="view-history">View</button>
+					</td>
+				</tr>
+			</table>
+		</main>
+	</div>
+	<script>
+		function deletePatient(e, form) {
+			e.preventDefault();
+
+			let confirmDelete = confirm("Are you sure to delete the patient");
+
+			if (confirmDelete) {
+
+				form.submit();
+			}
+		}
+	</script>
+</body>
+</html>
