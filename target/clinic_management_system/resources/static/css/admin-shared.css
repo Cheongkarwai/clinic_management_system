@@ -7,8 +7,6 @@ html, body {
 	width: 100%;
 	padding: 0;
 	margin: 0;
-	box-sizing: border-box;
-	font-family: Arial;
 }
 
 * {
@@ -16,12 +14,6 @@ html, body {
 	text-decoration: none;
 	font-family: "Poppins", sans-serif;
 }
-
-.container {
-	display: flex;
-	height: 100%;
-}
-
 
 
 aside,aside div {
@@ -96,27 +88,14 @@ aside a:hover {
 	color:black;
 }
 
-#admin-page {
-	border: 0;
-}
 
-@media(max-width:500px){
-	.container{
-		flex-direction:column;
-	}
-}
 
 .error {
 	color: red;
 }
 
 
-.sub-container {
-	height: 100%;
-	width: 100%;
-	display: grid;
-	grid-template-rows: 100px 1fr;
-}
+
 
 .content-container {
 	display: flex;
@@ -125,17 +104,6 @@ aside a:hover {
 	align-items: center;
 }
 
-input[type=submit] {
-	background-color: #abdbe3;
-	border: 0;
-	padding: 15px 0;
-	color: white;
-	cursor: pointer;
-	border-radius: 6px;
-	margin-top: 25px;
-	font-size: 15px;
-	width: 100%;
-}
 
 
 .back-btn{

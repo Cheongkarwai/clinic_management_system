@@ -19,12 +19,12 @@ import com.cheong.clinic.auth.repository.UserRepository;
 
 @Service
 @Transactional
-public class UserDetailsManagerImpl implements UserDetailsManager{
+public class UserService implements UserDetailsManager{
 
 	@Autowired
 	private UserRepository userRepository;
 	
-	private Logger logger = Logger.getLogger(UserDetailsManagerImpl.class.getName());
+	private Logger logger = Logger.getLogger(UserService.class.getName());
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -40,7 +40,10 @@ public class UserDetailsManagerImpl implements UserDetailsManager{
 			return  User.withUsername(user.getUsername())
 					.password(user.getPassword())
 					.authorities(user.getRole())
-					.accountLocked(user.getEnabled())
+					.accountLocked(false)
+					.disabled(false)
+					.credentialsExpired(false)
+					.accountExpired(false)
 					.build();
 		}
 		throw new UsernameNotFoundException("User not found");
